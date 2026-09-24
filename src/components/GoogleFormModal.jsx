@@ -1,20 +1,16 @@
 import React, { useState } from 'react'
-import { X, ExternalLink, Send, CheckCircle2, Sparkles, BookOpen, Layers } from 'lucide-react'
+import { X, ExternalLink, Send, CheckCircle2, Sparkles } from 'lucide-react'
 
 export default function GoogleFormModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     institution: '',
-    program: '',
     deadline: '',
     stage: 'rough_concept',
     description: '',
     supportTypes: [],
-    currentTools: '',
-    challenges: '',
     consent: false
   })
 
@@ -31,71 +27,58 @@ export default function GoogleFormModal({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Simulated submission for the prototype
     setSubmitted(true)
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
       <div 
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#1C232A] border border-[#AE824B]/40 rounded-2xl shadow-2xl p-6 sm:p-8 text-[#FFFFFF]"
+        className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-[#D0CFC8] rounded-xl shadow-2xl p-6 sm:p-8 text-[#2D3741]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-lg text-[#D0CFC8] hover:text-white hover:bg-[#34404C] transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-lg text-[#536474] hover:text-[#2D3741] hover:bg-gray-100 transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
-          <div className="py-12 text-center space-y-4">
-            <div className="w-16 h-16 mx-auto rounded-full bg-[#185B6C]/30 border border-[#39A5BE] flex items-center justify-center text-[#39A5BE]">
-              <CheckCircle2 className="w-10 h-10" />
+          <div className="py-10 text-center space-y-3">
+            <div className="w-14 h-14 mx-auto rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-bold font-display text-white">Project Inquiry Received</h3>
-            <p className="text-[#D0CFC8] max-w-md mx-auto text-sm leading-relaxed">
-              Thank you for sharing your project! Our mentorship team will review your requirements, technical stack, and timeline within 24 hours.
+            <h3 className="text-xl font-bold font-display text-[#2D3741]">Project Inquiry Received</h3>
+            <p className="text-sm text-[#536474] max-w-sm mx-auto">
+              We received your project details! We will review your requirements and reach out via email.
             </p>
-            <div className="pt-4">
+            <div className="pt-3">
               <button
-                onClick={() => {
-                  setSubmitted(false)
-                  onClose()
-                }}
-                className="px-6 py-2.5 bg-[#AE824B] hover:bg-[#C7985D] text-white font-semibold rounded-lg text-sm transition-all"
+                onClick={() => { setSubmitted(false); onClose(); }}
+                className="px-5 py-2.5 bg-[#2D3741] text-white rounded-lg text-sm font-semibold hover:bg-[#AE824B] transition-colors"
               >
-                Close Window
+                Close
               </button>
             </div>
           </div>
         ) : (
           <div>
-            {/* Header */}
-            <div className="border-b border-[#34404C] pb-5 mb-6">
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[#AE824B] mb-1">
-                <Sparkles className="w-4 h-4" />
-                <span>Project Intake & Mentorship Inquiry</span>
-              </div>
-              <h2 className="text-2xl font-bold font-display text-white">
+            <div className="border-b border-[#D0CFC8] pb-4 mb-5">
+              <h2 className="text-xl font-bold font-display text-[#2D3741]">
                 Tell Us About Your Final-Year Project
               </h2>
-              <p className="text-sm text-[#D0CFC8] mt-1.5 leading-relaxed">
-                Whether you have an early concept or need urgent implementation support, fill in the details below or access our official Google Form directly.
+              <p className="text-xs text-[#536474] mt-1">
+                Fill out the quick fields below or open our official Google Form directly.
               </p>
 
-              {/* Direct Google Form Callout */}
-              <div className="mt-4 p-3.5 rounded-xl bg-[#2D3741]/80 border border-[#445363] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-                <span className="text-[#D0CFC8]">
-                  Prefer the official standalone form?
-                </span>
+              <div className="mt-3 p-3 rounded-lg bg-[#F8F8F6] border border-[#D0CFC8] flex items-center justify-between text-xs">
+                <span className="text-[#536474]">Official form:</span>
                 <a
                   href="https://forms.google.com" 
                   target="_blank" 
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#185B6C] hover:bg-[#24758A] text-white font-medium transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#2D3741] text-white font-medium hover:bg-[#AE824B] transition-colors"
                 >
                   <span>Open Google Form</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -103,83 +86,58 @@ export default function GoogleFormModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-5 text-sm">
-              {/* Contact info grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-[#D0CFC8] mb-1">
-                    Full Name <span className="text-[#AE824B]">*</span>
-                  </label>
+                  <label className="block font-semibold text-[#2D3741] mb-1">Full Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Alex Morgan"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#2D3741] border border-[#445363] text-white placeholder-gray-400 focus:outline-none focus:border-[#AE824B] transition-colors"
+                    placeholder="Your name"
+                    className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#D0CFC8] mb-1">
-                    Email Address <span className="text-[#AE824B]">*</span>
-                  </label>
+                  <label className="block font-semibold text-[#2D3741] mb-1">Email *</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="alex@university.edu"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#2D3741] border border-[#445363] text-white placeholder-gray-400 focus:outline-none focus:border-[#AE824B] transition-colors"
+                    placeholder="student@university.edu"
+                    className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
                   />
                 </div>
               </div>
 
-              {/* Institution and deadline */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold text-[#D0CFC8] mb-1">
-                    Institution & Course
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.institution}
-                    onChange={(e) => setFormData({...formData, institution: e.target.value})}
-                    placeholder="BSc Computer Science / BEng Electrical"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#2D3741] border border-[#445363] text-white placeholder-gray-400 focus:outline-none focus:border-[#AE824B] transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-[#D0CFC8] mb-1">
-                    Submission Deadline / Date
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.deadline}
-                    onChange={(e) => setFormData({...formData, deadline: e.target.value})}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#2D3741] border border-[#445363] text-white placeholder-gray-400 focus:outline-none focus:border-[#AE824B] transition-colors"
-                  />
-                </div>
-              </div>
-
-              {/* Current Project Stage */}
               <div>
-                <label className="block text-xs font-semibold text-[#D0CFC8] mb-2">
-                  Current Project Stage <span className="text-[#AE824B]">*</span>
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <label className="block font-semibold text-[#2D3741] mb-1">Institution & Degree</label>
+                <input
+                  type="text"
+                  value={formData.institution}
+                  onChange={(e) => setFormData({...formData, institution: e.target.value})}
+                  placeholder="e.g. BSc Computer Science, Year 4"
+                  className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
+                />
+              </div>
+
+              <div>
+                <label className="block font-semibold text-[#2D3741] mb-1.5">Project Stage *</label>
+                <div className="grid grid-cols-2 gap-2 text-xs">
                   {[
                     { id: 'rough_concept', label: 'Rough concept / Idea search' },
-                    { id: 'defined_idea', label: 'Defined topic & objectives' },
-                    { id: 'started_building', label: 'Already started building (Stuck)' },
-                    { id: 'need_documentation', label: 'Finishing & documentation phase' },
+                    { id: 'defined_idea', label: 'Defined topic & proposal' },
+                    { id: 'started_building', label: 'Started building (Stuck)' },
+                    { id: 'need_documentation', label: 'Documentation / Defense' },
                   ].map((stage) => (
                     <label
                       key={stage.id}
-                      className={`flex items-center gap-2.5 p-3 rounded-lg border text-xs cursor-pointer transition-all ${
+                      className={`flex items-center gap-2 p-2 rounded-lg border cursor-pointer ${
                         formData.stage === stage.id
-                          ? 'border-[#AE824B] bg-[#AE824B]/15 text-white font-medium'
-                          : 'border-[#445363] bg-[#2D3741] text-[#D0CFC8] hover:border-[#D0CFC8]'
+                          ? 'border-[#2D3741] bg-[#F8F8F6] font-medium'
+                          : 'border-[#D0CFC8] bg-white text-[#536474]'
                       }`}
                     >
                       <input
@@ -187,7 +145,6 @@ export default function GoogleFormModal({ isOpen, onClose }) {
                         name="stage"
                         checked={formData.stage === stage.id}
                         onChange={() => setFormData({ ...formData, stage: stage.id })}
-                        className="text-[#AE824B] focus:ring-[#AE824B]"
                       />
                       <span>{stage.label}</span>
                     </label>
@@ -195,85 +152,30 @@ export default function GoogleFormModal({ isOpen, onClose }) {
                 </div>
               </div>
 
-              {/* Support Required Checkboxes */}
               <div>
-                <label className="block text-xs font-semibold text-[#D0CFC8] mb-2">
-                  Support Required (Select all that apply)
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                  {[
-                    'Machine Learning & AI Integration',
-                    'Software & IoT Hardware Prototyping',
-                    'Research Gap Analysis & Literature Review',
-                    'Full-Stack & API / Database Integration',
-                    'Algorithm Planning & Scoping',
-                    'Thesis Documentation & Defense Preparation'
-                  ].map((item) => (
-                    <button
-                      type="button"
-                      key={item}
-                      onClick={() => handleSupportToggle(item)}
-                      className={`flex items-center gap-2 p-2.5 rounded-lg border text-left transition-all ${
-                        formData.supportTypes.includes(item)
-                          ? 'border-[#185B6C] bg-[#185B6C]/25 text-white font-medium'
-                          : 'border-[#445363] bg-[#2D3741] text-[#D0CFC8] hover:border-gray-500'
-                      }`}
-                    >
-                      <div className={`w-4 h-4 rounded flex items-center justify-center border text-[10px] ${
-                        formData.supportTypes.includes(item) ? 'bg-[#185B6C] border-[#39A5BE]' : 'border-gray-500'
-                      }`}>
-                        {formData.supportTypes.includes(item) && '✓'}
-                      </div>
-                      <span>{item}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Description */}
-              <div>
-                <label className="block text-xs font-semibold text-[#D0CFC8] mb-1">
-                  Brief Project Overview & Biggest Blocker
-                </label>
+                <label className="block font-semibold text-[#2D3741] mb-1">Brief Description / Challenges</label>
                 <textarea
                   rows="3"
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
                   placeholder="Tell us what problem your project solves and where you need the most help..."
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#2D3741] border border-[#445363] text-white placeholder-gray-400 focus:outline-none focus:border-[#AE824B] transition-colors"
+                  className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
                 ></textarea>
               </div>
 
-              {/* Consent checkbox */}
-              <div className="flex items-start gap-2 pt-1 text-xs text-[#D0CFC8]">
-                <input
-                  type="checkbox"
-                  id="consent"
-                  required
-                  checked={formData.consent}
-                  onChange={(e) => setFormData({...formData, consent: e.target.checked})}
-                  className="mt-0.5 rounded border-gray-600 text-[#AE824B] focus:ring-[#AE824B]"
-                />
-                <label htmlFor="consent" className="cursor-pointer leading-tight">
-                  I agree to let the vitsnbolt mentorship team contact me regarding my final-year project inquiry.
-                </label>
-              </div>
-
-              {/* Actions */}
-              <div className="pt-2 flex items-center justify-end gap-3">
+              <div className="pt-3 flex items-center justify-end gap-2">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2.5 rounded-lg border border-[#445363] text-[#D0CFC8] hover:text-white hover:bg-[#34404C] transition-colors"
+                  className="px-4 py-2 rounded-lg border border-[#D0CFC8] text-[#536474] hover:bg-gray-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#AE824B] hover:bg-[#C7985D] text-white font-semibold shadow-lg shadow-[#AE824B]/20 transition-all hover:translate-y-[-1px]"
+                  className="px-5 py-2 rounded-lg bg-[#2D3741] hover:bg-[#AE824B] text-white font-semibold transition-colors"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Inquiry</span>
+                  Submit Inquiry
                 </button>
               </div>
             </form>
