@@ -1,24 +1,26 @@
 @import "tailwindcss";
 
 @theme {
+  --color-dark-slate: #2D3741;
+  --color-light-beige: #D0CFC8;
+  --color-bronze: #AE824B;
+  --color-light-brown: #A26B38;
+  --color-teal-accent: #185B6C;
   --color-canvas: #FAF8F5;
-  --color-canvas-card: #FFFFFF;
-  --color-ink-primary: #1C232A;
-  --color-ink-muted: #5F6B78;
-  --color-gold-accent: #B88E56;
-  --color-gold-light: #C99E65;
-  --color-gold-deep: #A2763E;
-  --color-border-subtle: #E8E4DA;
-  --color-border-card: #DFDAD0;
 
   --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  color-scheme: light;
 }
 
 html {
   font-family: var(--font-sans);
   background-color: #FAF8F5;
-  color: #1C232A;
+  color: #2D3741;
+  scroll-behavior: smooth;
 }
 
 .font-serif {
@@ -27,4 +29,17 @@ html {
 
 .font-sans {
   font-family: var(--font-sans);
+}
+
+/* Subtle vintage grid pattern */
+.bg-vintage-grid {
+  background-size: 28px 28px;
+  background-image: 
+    linear-gradient(to right, rgba(45, 55, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(45, 55, 65, 0.04) 1px, transparent 1px);
+}
+
+/* Warm metallic hairline sheen */
+.sheen-bronze {
+  background: linear-gradient(135deg, rgba(174, 130, 75, 0.15) 0%, rgba(162, 107, 56, 0.05) 50%, rgba(24, 91, 108, 0.08) 100%);
 }
