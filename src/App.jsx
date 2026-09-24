@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import UpcomingSections from './components/UpcomingSections'
-import Footer from './components/Footer'
 import GoogleFormModal from './components/GoogleFormModal'
 
 export default function App() {
@@ -14,11 +12,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#1C232A] flex flex-col font-sans selection:bg-[#B88E56] selection:text-white">
       <Navbar onOpenForm={handleOpenForm} />
-      <main className="flex-1">
+      <main className="flex-1 flex flex-col">
         <Hero onOpenForm={handleOpenForm} />
-        <UpcomingSections onOpenForm={handleOpenForm} />
       </main>
-      <Footer onOpenForm={handleOpenForm} />
       <GoogleFormModal isOpen={formModalOpen} onClose={handleCloseForm} />
     </div>
   )

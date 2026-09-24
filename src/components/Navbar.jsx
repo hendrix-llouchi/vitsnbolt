@@ -1,57 +1,56 @@
 import React, { useState } from 'react'
-import { ArrowRight, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 export default function Navbar({ onOpenForm }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="w-full bg-[#FAF8F5]/90 backdrop-blur-sm border-b border-[#E8E4DA]/60 sticky top-0 z-40">
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <header className="w-full bg-[#FAF8F5] pt-6 pb-4 px-6 md:px-12 sticky top-0 z-40">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
         
         {/* Brand Name in elegant serif */}
-        <a href="#" className="font-serif text-2xl font-normal text-[#1C232A] tracking-tight hover:opacity-80 transition-opacity">
+        <a href="#" className="font-serif text-2xl md:text-3xl font-normal text-[#1C232A] tracking-tight hover:opacity-85 transition-opacity">
           vitsnbolt
         </a>
 
-        {/* Center / Right Links */}
-        <div className="hidden md:flex items-center gap-9">
-          <nav className="flex items-center gap-8 text-[13px] tracking-wide text-[#5F6B78]">
-            <a href="#services" className="hover:text-[#1C232A] transition-colors">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8">
+          <nav className="flex items-center gap-7 text-[13px] font-sans">
+            <a href="#" className="text-[#B88E56] font-medium transition-colors">
+              Home
+            </a>
+            <a href="#about" className="text-[#5F6B78] hover:text-[#1C232A] transition-colors">
+              About
+            </a>
+            <a href="#services" className="text-[#5F6B78] hover:text-[#1C232A] transition-colors">
               Services
-            </a>
-            <a href="#dilemmas" className="hover:text-[#1C232A] transition-colors">
-              The Dilemmas
-            </a>
-            <a href="#how-it-works" className="hover:text-[#1C232A] transition-colors">
-              How It Works
             </a>
           </nav>
 
-          {/* Right Action Button */}
           <button
             onClick={onOpenForm}
-            className="px-5 py-2.5 bg-[#1C232A] hover:bg-[#2D3741] text-white text-[13px] font-medium transition-all shadow-sm"
+            className="px-5 py-2.5 bg-[#1C232A] hover:bg-[#2D3741] text-white text-[13px] font-sans font-medium transition-colors"
           >
             Tell Us About Your Project
           </button>
         </div>
 
-        {/* Mobile menu trigger */}
+        {/* Mobile menu button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden p-2 text-[#1C232A]"
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-6 py-4 bg-[#FAF8F5] border-b border-[#E8E4DA] space-y-3 text-sm">
-          <a href="#services" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-[#5F6B78]">Services</a>
-          <a href="#dilemmas" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-[#5F6B78]">The Dilemmas</a>
-          <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-[#5F6B78]">How It Works</a>
+        <div className="md:hidden pt-4 pb-3 border-t border-[#E8E4DA] mt-3 space-y-3 text-sm">
+          <a href="#" onClick={() => setMobileMenuOpen(false)} className="block text-[#B88E56] font-medium">Home</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block text-[#5F6B78]">About</a>
+          <a href="#services" onClick={() => setMobileMenuOpen(false)} className="block text-[#5F6B78]">Services</a>
           <button
             onClick={() => { setMobileMenuOpen(false); onOpenForm(); }}
             className="w-full mt-2 py-2.5 bg-[#1C232A] text-white text-xs font-medium text-center"
