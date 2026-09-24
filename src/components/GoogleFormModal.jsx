@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { X, ExternalLink, Send, CheckCircle2, Sparkles } from 'lucide-react'
+import { X, ExternalLink, CheckCircle2 } from 'lucide-react'
 
 export default function GoogleFormModal({ isOpen, onClose }) {
   const [submitted, setSubmitted] = useState(false)
@@ -7,23 +7,11 @@ export default function GoogleFormModal({ isOpen, onClose }) {
     name: '',
     email: '',
     institution: '',
-    deadline: '',
     stage: 'rough_concept',
-    description: '',
-    supportTypes: [],
-    consent: false
+    description: ''
   })
 
   if (!isOpen) return null
-
-  const handleSupportToggle = (type) => {
-    setFormData(prev => ({
-      ...prev,
-      supportTypes: prev.supportTypes.includes(type)
-        ? prev.supportTypes.filter(t => t !== type)
-        : [...prev.supportTypes, type]
-    }))
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,32 +19,29 @@ export default function GoogleFormModal({ isOpen, onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs font-sans">
       <div 
-        className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-white border border-[#D0CFC8] rounded-xl shadow-2xl p-6 sm:p-8 text-[#2D3741]"
+        className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white border border-[#E8E4DA] shadow-2xl p-8 text-[#1C232A]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-lg text-[#536474] hover:text-[#2D3741] hover:bg-gray-100 transition-colors"
-          aria-label="Close modal"
+          className="absolute top-6 right-6 p-1 text-[#8C96A0] hover:text-[#1C232A] transition-colors"
+          aria-label="Close"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
-          <div className="py-10 text-center space-y-3">
-            <div className="w-14 h-14 mx-auto rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
-              <CheckCircle2 className="w-8 h-8" />
-            </div>
-            <h3 className="text-xl font-bold font-display text-[#2D3741]">Project Inquiry Received</h3>
-            <p className="text-sm text-[#536474] max-w-sm mx-auto">
-              We received your project details! We will review your requirements and reach out via email.
+          <div className="py-12 text-center space-y-3">
+            <h3 className="font-serif text-2xl text-[#1C232A]">Inquiry Received</h3>
+            <p className="text-sm text-[#5F6B78] max-w-xs mx-auto leading-relaxed">
+              Thank you for sharing your project details. We will review your context and reach out via email.
             </p>
-            <div className="pt-3">
+            <div className="pt-4">
               <button
                 onClick={() => { setSubmitted(false); onClose(); }}
-                className="px-5 py-2.5 bg-[#2D3741] text-white rounded-lg text-sm font-semibold hover:bg-[#AE824B] transition-colors"
+                className="px-6 py-2.5 bg-[#1C232A] text-white text-xs font-medium hover:bg-[#2D3741]"
               >
                 Close
               </button>
@@ -64,118 +49,88 @@ export default function GoogleFormModal({ isOpen, onClose }) {
           </div>
         ) : (
           <div>
-            <div className="border-b border-[#D0CFC8] pb-4 mb-5">
-              <h2 className="text-xl font-bold font-display text-[#2D3741]">
-                Tell Us About Your Final-Year Project
+            <div className="border-b border-[#E8E4DA] pb-5 mb-6">
+              <h2 className="font-serif text-3xl font-normal text-[#1C232A] tracking-tight">
+                Tell Us About Your Project
               </h2>
-              <p className="text-xs text-[#536474] mt-1">
-                Fill out the quick fields below or open our official Google Form directly.
+              <p className="text-xs text-[#5F6B78] mt-1.5 leading-relaxed">
+                Share a few details below, or jump directly to our official Google Form.
               </p>
 
-              <div className="mt-3 p-3 rounded-lg bg-[#F8F8F6] border border-[#D0CFC8] flex items-center justify-between text-xs">
-                <span className="text-[#536474]">Official form:</span>
+              <div className="mt-4 p-3 bg-[#FAF8F5] border border-[#E8E4DA] flex items-center justify-between text-xs">
+                <span className="text-[#5F6B78]">Official intake link:</span>
                 <a
                   href="https://forms.google.com" 
                   target="_blank" 
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#2D3741] text-white font-medium hover:bg-[#AE824B] transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1C232A] text-white text-xs font-medium hover:bg-[#2D3741]"
                 >
                   <span>Open Google Form</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
+                  <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block font-semibold text-[#2D3741] mb-1">Full Name *</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Your name"
-                    className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
-                  />
-                </div>
-                <div>
-                  <label className="block font-semibold text-[#2D3741] mb-1">Email *</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="student@university.edu"
-                    className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
-                  />
-                </div>
-              </div>
-
               <div>
-                <label className="block font-semibold text-[#2D3741] mb-1">Institution & Degree</label>
+                <label className="block text-[#1C232A] font-medium mb-1">Full Name</label>
                 <input
                   type="text"
-                  value={formData.institution}
-                  onChange={(e) => setFormData({...formData, institution: e.target.value})}
-                  placeholder="e.g. BSc Computer Science, Year 4"
-                  className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  placeholder="Your full name"
+                  className="w-full px-3.5 py-2.5 border border-[#E8E4DA] bg-white text-[#1C232A] focus:outline-none focus:border-[#1C232A]"
                 />
               </div>
 
               <div>
-                <label className="block font-semibold text-[#2D3741] mb-1.5">Project Stage *</label>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  {[
-                    { id: 'rough_concept', label: 'Rough concept / Idea search' },
-                    { id: 'defined_idea', label: 'Defined topic & proposal' },
-                    { id: 'started_building', label: 'Started building (Stuck)' },
-                    { id: 'need_documentation', label: 'Documentation / Defense' },
-                  ].map((stage) => (
-                    <label
-                      key={stage.id}
-                      className={`flex items-center gap-2 p-2 rounded-lg border cursor-pointer ${
-                        formData.stage === stage.id
-                          ? 'border-[#2D3741] bg-[#F8F8F6] font-medium'
-                          : 'border-[#D0CFC8] bg-white text-[#536474]'
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="stage"
-                        checked={formData.stage === stage.id}
-                        onChange={() => setFormData({ ...formData, stage: stage.id })}
-                      />
-                      <span>{stage.label}</span>
-                    </label>
-                  ))}
-                </div>
+                <label className="block text-[#1C232A] font-medium mb-1">Email Address</label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  placeholder="name@university.edu"
+                  className="w-full px-3.5 py-2.5 border border-[#E8E4DA] bg-white text-[#1C232A] focus:outline-none focus:border-[#1C232A]"
+                />
               </div>
 
               <div>
-                <label className="block font-semibold text-[#2D3741] mb-1">Brief Description / Challenges</label>
+                <label className="block text-[#1C232A] font-medium mb-1">Institution & Course</label>
+                <input
+                  type="text"
+                  value={formData.institution}
+                  onChange={(e) => setFormData({...formData, institution: e.target.value})}
+                  placeholder="e.g. BEng Computer Engineering, Final Year"
+                  className="w-full px-3.5 py-2.5 border border-[#E8E4DA] bg-white text-[#1C232A] focus:outline-none focus:border-[#1C232A]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[#1C232A] font-medium mb-1">Where are you currently stuck?</label>
                 <textarea
                   rows="3"
                   value={formData.description}
                   onChange={(e) => setFormData({...formData, description: e.target.value})}
-                  placeholder="Tell us what problem your project solves and where you need the most help..."
-                  className="w-full px-3 py-2 rounded-lg border border-[#D0CFC8] bg-white text-[#2D3741] focus:outline-none focus:border-[#2D3741]"
+                  placeholder="Tell us about your project topic, tools, and biggest hurdle..."
+                  className="w-full px-3.5 py-2.5 border border-[#E8E4DA] bg-white text-[#1C232A] focus:outline-none focus:border-[#1C232A]"
                 ></textarea>
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-2">
+              <div className="pt-2 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 rounded-lg border border-[#D0CFC8] text-[#536474] hover:bg-gray-50"
+                  className="px-4 py-2 border border-[#E8E4DA] text-[#5F6B78] hover:text-[#1C232A]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-lg bg-[#2D3741] hover:bg-[#AE824B] text-white font-semibold transition-colors"
+                  className="px-6 py-2 bg-[#1C232A] hover:bg-[#2D3741] text-white font-medium"
                 >
-                  Submit Inquiry
+                  Submit
                 </button>
               </div>
             </form>

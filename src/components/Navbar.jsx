@@ -1,71 +1,62 @@
 import React, { useState } from 'react'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowRight, Menu, X } from 'lucide-react'
 
 export default function Navbar({ onOpenForm }) {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur border-b border-[#D0CFC8]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+    <header className="w-full bg-[#FAF8F5]/90 backdrop-blur-sm border-b border-[#E8E4DA]/60 sticky top-0 z-40">
+      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-lg bg-[#2D3741] flex items-center justify-center text-white font-display font-bold text-sm tracking-wider">
-            VB
-          </div>
-          <span className="font-display font-bold text-xl text-[#2D3741] tracking-tight">
-            vitsnbolt
-          </span>
+        {/* Brand Name in elegant serif */}
+        <a href="#" className="font-serif text-2xl font-normal text-[#1C232A] tracking-tight hover:opacity-80 transition-opacity">
+          vitsnbolt
         </a>
 
-        {/* Navigation links (from Section 01 of PDF doc) */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#536474]">
-          <a href="#services" className="hover:text-[#2D3741] transition-colors">
-            Services
-          </a>
-          <a href="#how-it-works" className="hover:text-[#2D3741] transition-colors">
-            How It Works
-          </a>
-          <a href="#about" className="hover:text-[#2D3741] transition-colors">
-            About
-          </a>
-          <a href="#contact" className="hover:text-[#2D3741] transition-colors">
-            Contact
-          </a>
-        </nav>
+        {/* Center / Right Links */}
+        <div className="hidden md:flex items-center gap-9">
+          <nav className="flex items-center gap-8 text-[13px] tracking-wide text-[#5F6B78]">
+            <a href="#services" className="hover:text-[#1C232A] transition-colors">
+              Services
+            </a>
+            <a href="#dilemmas" className="hover:text-[#1C232A] transition-colors">
+              The Dilemmas
+            </a>
+            <a href="#how-it-works" className="hover:text-[#1C232A] transition-colors">
+              How It Works
+            </a>
+          </nav>
 
-        {/* CTA Button */}
-        <div className="hidden sm:block">
+          {/* Right Action Button */}
           <button
             onClick={onOpenForm}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#2D3741] hover:bg-[#AE824B] text-white text-sm font-semibold transition-colors shadow-sm"
+            className="px-5 py-2.5 bg-[#1C232A] hover:bg-[#2D3741] text-white text-[13px] font-medium transition-all shadow-sm"
           >
-            <span>Start Your Project</span>
-            <ArrowUpRight className="w-4 h-4" />
+            Tell Us About Your Project
           </button>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu trigger */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 rounded-lg text-[#2D3741] hover:bg-gray-100"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-[#1C232A]"
+          aria-label="Toggle menu"
         >
-          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden px-4 pt-2 pb-6 bg-white border-b border-[#D0CFC8] space-y-3 text-sm">
-          <a href="#services" onClick={() => setMenuOpen(false)} className="block py-2 text-[#536474] font-medium">Services</a>
-          <a href="#how-it-works" onClick={() => setMenuOpen(false)} className="block py-2 text-[#536474] font-medium">How It Works</a>
-          <a href="#about" onClick={() => setMenuOpen(false)} className="block py-2 text-[#536474] font-medium">About</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)} className="block py-2 text-[#536474] font-medium">Contact</a>
+      {/* Mobile dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden px-6 py-4 bg-[#FAF8F5] border-b border-[#E8E4DA] space-y-3 text-sm">
+          <a href="#services" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-[#5F6B78]">Services</a>
+          <a href="#dilemmas" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-[#5F6B78]">The Dilemmas</a>
+          <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="block py-1 text-[#5F6B78]">How It Works</a>
           <button
-            onClick={() => { setMenuOpen(false); onOpenForm(); }}
-            className="w-full mt-2 py-3 rounded-lg bg-[#2D3741] text-white font-semibold text-center"
+            onClick={() => { setMobileMenuOpen(false); onOpenForm(); }}
+            className="w-full mt-2 py-2.5 bg-[#1C232A] text-white text-xs font-medium text-center"
           >
-            Start Your Project
+            Tell Us About Your Project
           </button>
         </div>
       )}

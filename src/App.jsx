@@ -12,7 +12,7 @@ export default function App() {
   const handleCloseForm = () => setFormModalOpen(false)
 
   return (
-    <div className="min-h-screen bg-white text-[#2D3741] flex flex-col font-sans selection:bg-[#AE824B] selection:text-white">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#1C232A] flex flex-col font-sans selection:bg-[#B88E56] selection:text-white">
       <Navbar onOpenForm={handleOpenForm} />
       <main className="flex-1">
         <Hero onOpenForm={handleOpenForm} />

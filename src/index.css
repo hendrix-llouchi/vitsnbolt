@@ -1,27 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --color-slate-primary: #2D3741;
-  --color-slate-muted: #536474;
-  --color-beige-neutral: #D0CFC8;
-  --color-beige-light: #F8F8F6;
-  --color-beige-surface: #EFEFEA;
-  --color-bronze-gold: #AE824B;
-  --color-bronze-dark: #8F6635;
-  --color-brown-warm: #A26B38;
-  --color-teal-tech: #185B6C;
-  --color-teal-light: #25788D;
+  --color-canvas: #FAF8F5;
+  --color-canvas-card: #FFFFFF;
+  --color-ink-primary: #1C232A;
+  --color-ink-muted: #5F6B78;
+  --color-gold-accent: #B88E56;
+  --color-gold-light: #C99E65;
+  --color-gold-deep: #A2763E;
+  --color-border-subtle: #E8E4DA;
+  --color-border-card: #DFDAD0;
 
-  --font-display: "Space Grotesk", -apple-system, sans-serif;
-  --font-sans: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html {
   font-family: var(--font-sans);
-  background-color: #ffffff;
-  color: #2D3741;
+  background-color: #FAF8F5;
+  color: #1C232A;
 }
 
-h1, h2, h3, h4, .font-heading {
-  font-family: var(--font-display);
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
 }
