@@ -32,8 +32,8 @@ export default function Navigation() {
   return (
     <header className="site-header">
       <div className="content-wrap site-header__inner">
-        <a className="brand-mark" href="#top" aria-label="Vits&Bolts home">
-          Vits&Bolts
+        <a className="brand-mark" href="#top" aria-label="Volts&Bits home">
+          Volts&Bits
         </a>
 
         <nav className="site-nav" aria-label="Main navigation">
