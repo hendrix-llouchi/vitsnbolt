@@ -7,6 +7,8 @@
   --color-light-brown: #A26B38;
   --color-teal-accent: #185B6C;
   --color-canvas: #FAF8F5;
+  --color-stone-muted: #F3EFEA;
+  --color-stone-subtle: #E8E2D8;
 
   --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -31,15 +33,25 @@ html {
   font-family: var(--font-sans);
 }
 
-/* Subtle vintage grid pattern */
-.bg-vintage-grid {
-  background-size: 28px 28px;
-  background-image: 
-    linear-gradient(to right, rgba(45, 55, 65, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(45, 55, 65, 0.04) 1px, transparent 1px);
+/* Subtle architectural drafting rule / paper texture */
+.bg-studio-canvas {
+  background-color: #FAF8F5;
+  background-image: radial-gradient(rgba(45, 55, 65, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
 }
 
-/* Warm metallic hairline sheen */
-.sheen-bronze {
-  background: linear-gradient(135deg, rgba(174, 130, 75, 0.15) 0%, rgba(162, 107, 56, 0.05) 50%, rgba(24, 91, 108, 0.08) 100%);
+/* Clean studio hairline border */
+.border-studio-hairline {
+  border-color: rgba(208, 207, 200, 0.7);
+}
+
+/* Restrained bronze emphasis */
+.text-bronze-accent {
+  color: #AE824B;
+}
+
+/* Smooth focus rings for accessibility */
+*:focus-visible {
+  outline: 2px solid #AE824B;
+  outline-offset: 2px;
 }
